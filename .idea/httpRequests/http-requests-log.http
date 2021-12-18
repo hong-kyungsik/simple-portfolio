@@ -1,0 +1,144 @@
+GET http://localhost:8080/test/azure/tests
+
+<> 2021-12-18T235449.200.txt
+
+###
+
+GET http://localhost:8080/test/azure/tests
+
+<> 2021-12-18T235434.200.txt
+
+###
+
+GET http://localhost:8080/test/azure/tests
+
+<> 2021-12-18T235256.200.txt
+
+###
+
+POST http://localhost:8080/test/azure/tests/new
+Content-Type: application/json
+
+{
+  "content": "content aaa"
+}
+
+<> 2021-12-18T235249.200.txt
+
+###
+
+POST http://localhost:8080/test/azure/tests/new
+Content-Type: application/json
+
+{
+  "content": "content aaa"
+}
+
+<> 2021-12-18T235018.200.txt
+
+###
+
+POST http://localhost:8080/test/azure/tests/new
+Content-Type: application/json
+
+{
+  "content": "content aaa"
+}
+
+<> 2021-12-18T234834.200.txt
+
+###
+
+GET http://localhost:8080/test/azure/tests
+
+###
+
+GET http://localhost:8080/test/azure/tests
+
+###
+
+GET http://localhost:8080/test/azure/tests
+
+###
+
+GET http://localhost:8080/test/azure/tests
+Content-Type: application/json
+
+{
+  "content": "content aaa"
+}
+
+###
+
+POST http://localhost:8080/test/azure/tests/new
+Content-Type: application/json
+
+{
+  "content": "content aaa"
+}
+
+<> 2021-12-18T234032.403.json
+
+###
+
+GET http://localhost:8080/test/azure/tests
+Content-Type: application/json
+
+{
+  "content": "content aaa"
+}
+
+###
+
+GET http://localhost:8080/test/azure/tests
+Content-Type: application/json
+
+{
+  "content": "content aaa"
+}
+
+###
+
+POST http://localhost:8080/test/azure/tests/new
+
+<> 2021-12-18T233229.403.json
+
+###
+
+GET http://localhost:8080/test/azure/tests
+Content-Type: application/json
+
+{
+"content": "contentaaa"
+}
+
+###
+
+GET http://localhost:8080/test/azure/tests
+Content-Type: application/json
+
+{
+"content": "contentaaa"
+}
+
+###
+
+POST http://localhost:8080/azure/tests/new
+
+<> 2021-12-18T233047.403.json
+
+###
+
+GET http://localhost:8080/azure/tests
+Content-Type: application/json
+
+{
+"content": "aaaaa"
+}
+
+###
+
+GET http://localhost:8080/azure/tests
+
+###
+
