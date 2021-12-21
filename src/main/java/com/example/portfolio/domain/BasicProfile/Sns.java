@@ -1,9 +1,6 @@
 package com.example.portfolio.domain.BasicProfile;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +8,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
+@Builder
 public class Sns {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +21,6 @@ public class Sns {
   private String iconImageUrl;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id")
+  @JoinColumn(name = "basicProfile.id")
   private BasicProfile basicProfile;
 }

@@ -1,5 +1,6 @@
 package com.example.portfolio.domain.BasicProfile;
 
+import com.example.portfolio.domain.Portfolio.Portfolio;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,4 +28,8 @@ public class BasicProfile {
 
   @OneToMany(mappedBy = "basicProfile")
   private List<Sns> snses;
+
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "id")
+  private Portfolio portfolio;
 }

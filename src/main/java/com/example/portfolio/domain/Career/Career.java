@@ -1,11 +1,10 @@
 package com.example.portfolio.domain.Career;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.example.portfolio.domain.Portfolio.Portfolio;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.sound.sampled.Port;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
+@Builder
 public class Career {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +28,8 @@ public class Career {
 
   @OneToMany(mappedBy = "career")
   private List<Job> jobs;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "portfolio.id")
+  private Portfolio portfolio;
 }

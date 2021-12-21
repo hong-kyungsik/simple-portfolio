@@ -1,20 +1,16 @@
 package com.example.portfolio.domain.Education;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.example.portfolio.domain.Portfolio.Portfolio;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
+@Builder
 public class Education {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +21,8 @@ public class Education {
   private LocalDate startDate;
 
   private LocalDate endDate;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "portfolio.id")
+  private Portfolio portfolio;
 }

@@ -1,19 +1,15 @@
 package com.example.portfolio.domain.Skill;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.example.portfolio.domain.Portfolio.Portfolio;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
+@Builder
 public class Skill {
 
   @Id
@@ -23,5 +19,9 @@ public class Skill {
   private String title;
 
   private Integer levelPercentage;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "portfolio.id")
+  private Portfolio portfolio;
 
 }

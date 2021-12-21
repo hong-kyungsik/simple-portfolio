@@ -1,9 +1,6 @@
 package com.example.portfolio.domain.Career;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,6 +9,7 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
+@Builder
 public class Job {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +24,6 @@ public class Job {
   private LocalDate endDate;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name="id")
+  @JoinColumn(name="career.id")
   private Career career;
 }
