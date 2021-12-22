@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Builder
+@Builder(builderMethodName = "hiddenBuilder")
 public class Project {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +27,12 @@ public class Project {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "portfolio.id")
   private Portfolio portfolio;
+
+  public static ProjectBuilder builder(String title, LocalDate startDate, LocalDate endDate){
+    return hiddenBuilder().title(title).startDate(startDate).endDate(endDate);
+  }
+
+  public void addDescription(String description){
+    this.description = description;
+  }
 }

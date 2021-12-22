@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Builder
+@Builder(builderMethodName = "hiddenBuilder")
 public class License {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +27,10 @@ public class License {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "portfolio.id")
   private Portfolio portfolio;
+
+  public static LicenseBuilder builder(
+      String title, String institutionName, LocalDate startDate, LocalDate expirationDate){
+    return hiddenBuilder()
+        .title(title).institutionName(institutionName).startDate(startDate).expirationDate(expirationDate);
+  }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Builder
+@Builder(builderMethodName = "hiddenBuilder")
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +24,8 @@ public class User {
 
   @OneToMany(mappedBy = "user")
   private List<Portfolio> portfolios;
+
+  public static UserBuilder builder(String name, String email, String password){
+    return hiddenBuilder().name(name).email(email).password(password);
+  }
 }

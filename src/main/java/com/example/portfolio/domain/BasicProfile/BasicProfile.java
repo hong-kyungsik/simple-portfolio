@@ -4,13 +4,14 @@ import com.example.portfolio.domain.Portfolio.Portfolio;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Builder
+@Builder(builderMethodName = "hiddenBuilder")
 public class BasicProfile {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +27,19 @@ public class BasicProfile {
 
   private String profileImageUrl;
 
-  @OneToMany(mappedBy = "basicProfile")
-  private List<Sns> snses;
+  @OneToMany(mappedBy = "basicProfile", cascade = CascadeType.ALL)
+  private final List<Sns> snses = new ArrayList<>();
 
   @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id")
+  @JoinColumn(name = "portfolio.id")
   private Portfolio portfolio;
+
+  public static BasicProfileBuilder builder(String name, String phone, String email){
+    return hiddenBuilder().name(name).phone(phone).email(email);
+  }
+
+  public void addSns(Sns sns){
+    snses.add(sns);
+    sns.setBasicProfile(this);
+  }
 }

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Builder
+@Builder(builderMethodName = "hiddenBuilder")
 public class Job {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +26,8 @@ public class Job {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name="career.id")
   private Career career;
+
+  public static JobBuilder builder(String title, LocalDate startDate, LocalDate endDate){
+    return hiddenBuilder().title(title).startDate(startDate).endDate(endDate);
+  }
 }

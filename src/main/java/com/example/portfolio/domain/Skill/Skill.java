@@ -9,7 +9,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Builder
+@Builder(builderMethodName = "hiddenBuilder")
 public class Skill {
 
   @Id
@@ -24,4 +24,7 @@ public class Skill {
   @JoinColumn(name = "portfolio.id")
   private Portfolio portfolio;
 
+  public static SkillBuilder builder(String title){
+    return hiddenBuilder().title(title);
+  }
 }

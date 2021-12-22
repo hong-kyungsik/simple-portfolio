@@ -4,7 +4,6 @@ import com.example.portfolio.domain.Portfolio.Portfolio;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.sound.sampled.Port;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Builder
+@Builder(builderMethodName = "hiddenBuilder")
 public class Career {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,4 +31,8 @@ public class Career {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "portfolio.id")
   private Portfolio portfolio;
+
+  public static CareerBuilder builder(String companyName, LocalDate startDate, LocalDate endDate){
+    return hiddenBuilder().companyName(companyName).startDate(startDate).endDate(endDate);
+  }
 }

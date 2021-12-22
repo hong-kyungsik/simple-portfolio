@@ -8,7 +8,8 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Builder
+@Builder(builderMethodName = "hiddenBuilder")
+@ToString(exclude = "basicProfile")
 public class Sns {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +24,12 @@ public class Sns {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "basicProfile.id")
   private BasicProfile basicProfile;
+
+  public static SnsBuilder builder(String serviceName, String url){
+    return hiddenBuilder().serviceName(serviceName).url(url);
+  }
+
+  public void setBasicProfile(BasicProfile profile){
+    basicProfile = profile;
+  }
 }
