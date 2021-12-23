@@ -13,11 +13,8 @@ class BasicProfileTest {
     String email = "aaa@bbb.ccc";
     String profileImageUrl = "https://profileImageUrl";
 
-    BasicProfile profile = BasicProfile.builder()
-        .name(name)
+    BasicProfile profile = BasicProfile.builder(name, phone, email)
         .selfDescription(selfDescription)
-        .phone(phone)
-        .email(email)
         .profileImageUrl(profileImageUrl)
         .build();
 

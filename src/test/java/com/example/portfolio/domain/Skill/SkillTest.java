@@ -10,8 +10,7 @@ class SkillTest {
     String title = "title";
     Integer levelPercentage = 30;
 
-    Skill skill = Skill.builder()
-        .title(title)
+    Skill skill = Skill.builder(title)
         .levelPercentage(levelPercentage)
         .build();
 

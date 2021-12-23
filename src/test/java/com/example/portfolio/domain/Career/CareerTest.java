@@ -15,11 +15,8 @@ class CareerTest {
     LocalDate startDate = LocalDate.now();
     LocalDate endDate = LocalDate.now();
 
-    Career career = Career.builder()
-        .companyName(companyName)
+    Career career = Career.builder(companyName, startDate, endDate)
         .description(description)
-        .startDate(startDate)
-        .endDate(endDate)
         .build();
 
     assertEquals(companyName, career.getCompanyName());

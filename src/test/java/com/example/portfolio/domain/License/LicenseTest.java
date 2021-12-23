@@ -15,11 +15,7 @@ class LicenseTest {
     LocalDate startDate = LocalDate.now();
     LocalDate expirationDate = LocalDate.now();
 
-    License license = License.builder()
-        .title(title)
-        .institutionName(institutionName)
-        .startDate(startDate)
-        .expirationDate(expirationDate)
+    License license = License.builder(title, institutionName, startDate, expirationDate)
         .build();
 
     assertEquals(title, license.getTitle());

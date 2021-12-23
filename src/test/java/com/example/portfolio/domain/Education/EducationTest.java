@@ -14,10 +14,7 @@ class EducationTest {
     LocalDate startDate = LocalDate.now();
     LocalDate endDate = LocalDate.now();
 
-    Education education = Education.builder()
-        .institutionName(institutionName)
-        .startDate(startDate)
-        .endDate(endDate)
+    Education education = Education.builder(institutionName, startDate, endDate)
         .build();
 
     assertEquals(institutionName, education.getInstitutionName());

@@ -13,10 +13,7 @@ class UserTest {
     String email = "email@email.com";
     String password = "password";
 
-    User user = User.builder()
-        .name(name)
-        .email(email)
-        .password(password)
+    User user = User.builder(name, email, password)
         .build();
 
     assertEquals(name, user.getName());

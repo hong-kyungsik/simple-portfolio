@@ -17,11 +17,8 @@ class JobTest {
     LocalDate startDate = LocalDate.now();
     LocalDate endDate = LocalDate.now();
 
-    Job job = Job.builder()
-        .title(title)
+    Job job = Job.builder(title, startDate, endDate)
         .description(description)
-        .startDate(startDate)
-        .endDate(endDate)
         .build();
 
     assertEquals(title, job.getTitle());

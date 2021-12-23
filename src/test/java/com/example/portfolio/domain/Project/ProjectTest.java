@@ -16,11 +16,8 @@ class ProjectTest {
     LocalDate startDate = LocalDate.now();
     LocalDate endDate = LocalDate.now();
 
-    Project project = Project.builder()
-        .title(title)
+    Project project = Project.builder(title, startDate, endDate)
         .description(description)
-        .startDate(startDate)
-        .endDate(endDate)
         .build();
 
     assertEquals(title, project.getTitle());

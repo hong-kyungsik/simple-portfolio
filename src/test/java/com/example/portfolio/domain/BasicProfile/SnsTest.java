@@ -12,10 +12,8 @@ class SnsTest {
     String url = "url";
     String iconImageUrl = "iconImageUrl";
 
-    Sns sns = Sns.builder()
-        .serviceName(serviceName)
+    Sns sns = Sns.builder(serviceName, url)
         .url(url)
-        .iconImageUrl(iconImageUrl)
         .build();
 
     assertEquals(serviceName, sns.getServiceName());
