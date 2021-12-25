@@ -3,6 +3,7 @@ package com.example.portfolio.api;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.HttpStatus;
 
 public class CommonResponse {
 
@@ -21,6 +22,11 @@ public class CommonResponse {
   public static class ErrorDto {
     private String message;
     private int status;
+
+    public ErrorDto(String message, HttpStatus status){
+      this.message = message;
+      this.status = status.value();
+    }
   }
 
   public static <T> ResultDto<T> success(T data){
