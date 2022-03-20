@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+
+import java.util.stream.Collectors;
 
 import static com.example.portfolio.api.CommonResponse.ErrorDto;
 import static com.example.portfolio.api.CommonResponse.ResultDto;
@@ -23,7 +26,7 @@ public class ApiExceptionHandler {
 
   @ExceptionHandler(NotFoundException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
-  public ResultDto<?> NotFoundExceptionHandler(NotFoundException e){
+  public ResultDto<?> handleNotFoundException(NotFoundException e){
     log.error("not found");
     return createNewErrorResult(e.getMessage(), HttpStatus.NOT_FOUND);
   }
@@ -31,18 +34,30 @@ public class ApiExceptionHandler {
   @ExceptionHandler({
       IllegalArgumentException.class,
       IllegalStateException.class,
-      ConstraintViolationException.class,
       MethodArgumentNotValidException.class
   })
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public ResultDto<?> BadRequestExceptionHandler(Exception e){
+  public ResultDto<?> handleBadRequestException(Exception e){
     log.error("Bad request", e);
-    return createNewErrorResult(e.getMessage(), HttpStatus.BAD_REQUEST);
+    return createNewErrorResult(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler({
+      ConstraintViolationException.class
+  })
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ResultDto<?> handleConstraintViolationException(ConstraintViolationException e){
+    log.error("Bad request", e);
+    return createNewErrorResult(
+        e.getConstraintViolations().stream()
+            .map(ConstraintViolation::getMessage)
+            .collect(Collectors.joining()),
+        HttpStatus.BAD_REQUEST);
   }
 
   @ExceptionHandler({Exception.class, RuntimeException.class})
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-  public ResultDto<?> ExceptionHandler(Exception e){
+  public ResultDto<?> handleException(Exception e){
     log.error("error occurred", e);
     return createNewErrorResult(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
   }

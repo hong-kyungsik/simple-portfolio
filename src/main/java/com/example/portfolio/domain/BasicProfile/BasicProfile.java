@@ -28,7 +28,7 @@ public class BasicProfile {
   private String profileImageUrl;
 
   @OneToMany(mappedBy = "basicProfile", cascade = CascadeType.ALL)
-  private final List<Sns> snses = new ArrayList<>();
+  private final List<Sns> snss = new ArrayList<>();
 
   @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "portfolio.id")
@@ -39,7 +39,7 @@ public class BasicProfile {
   }
 
   public void addSns(Sns sns){
-    snses.add(sns);
+    snss.add(sns);
     sns.setBasicProfile(this);
   }
 }
