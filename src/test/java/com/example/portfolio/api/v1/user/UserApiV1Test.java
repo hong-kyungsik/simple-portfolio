@@ -1,13 +1,12 @@
 package com.example.portfolio.api.v1.user;
 
 import com.example.portfolio.api.v1.user.dto.UserJoinRequestDtoV1;
-import com.example.portfolio.domain.User.User;
+import com.example.portfolio.domain.user.User;
 import com.example.portfolio.service.user.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.core.IsNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

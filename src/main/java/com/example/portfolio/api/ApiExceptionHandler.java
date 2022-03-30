@@ -1,5 +1,6 @@
 package com.example.portfolio.api;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.example.portfolio.error.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

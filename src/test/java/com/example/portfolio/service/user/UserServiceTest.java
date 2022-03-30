@@ -1,7 +1,7 @@
 package com.example.portfolio.service.user;
 
-import com.example.portfolio.domain.User.User;
-import com.example.portfolio.domain.User.UserRepository;
+import com.example.portfolio.domain.user.User;
+import com.example.portfolio.domain.user.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

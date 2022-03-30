@@ -1,9 +1,7 @@
 package com.example.portfolio.api.v1.user.dto;
 
-import com.example.portfolio.domain.User.User;
-import lombok.AllArgsConstructor;
+import com.example.portfolio.domain.user.User;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter

@@ -4,7 +4,7 @@ import com.example.portfolio.api.v1.user.dto.UserJoinRequestDtoV1;
 import com.example.portfolio.api.v1.user.dto.UserJoinResponseDtoV1;
 import com.example.portfolio.api.v1.user.dto.UserLoginRequestDtoV1;
 import com.example.portfolio.api.v1.user.dto.UserLoginResponseDtoV1;
-import com.example.portfolio.domain.User.User;
+import com.example.portfolio.domain.user.User;
 import com.example.portfolio.security.TokenProvider;
 import com.example.portfolio.service.user.UserService;
 import lombok.RequiredArgsConstructor;

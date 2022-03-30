@@ -1,7 +1,6 @@
 package com.example.portfolio.api.v1.user.dto;
 
-import com.example.portfolio.domain.User.User;
-import lombok.AllArgsConstructor;
+import com.example.portfolio.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
