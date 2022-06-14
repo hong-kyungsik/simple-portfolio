@@ -29,6 +29,7 @@ public class UserService{
             .orElseThrow(()->new NotFoundException("id not exists"));
     }
 
+    @Transactional(readOnly = true)
     public User login(String email, String password, final PasswordEncoder encoder){
         User user = userRepository.findByEmail(email)
             .orElseThrow(()->new NotFoundException("id not exists"));

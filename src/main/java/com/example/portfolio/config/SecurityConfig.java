@@ -25,16 +25,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .disable();
 
         http.httpBasic()
-                .disable();
+            .disable();
 
         http.formLogin()
-                .disable();
+            .disable();
 
         http.sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-            .antMatchers("/", "/**/auth/**").permitAll()
+            .antMatchers("/", "/**/auth/**", "/h2-console/**").permitAll()
             .anyRequest().authenticated();
 
         http.headers()

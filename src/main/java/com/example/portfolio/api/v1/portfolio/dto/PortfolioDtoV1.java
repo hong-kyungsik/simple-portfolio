@@ -7,17 +7,9 @@ import com.example.portfolio.api.v1.license.LicenseDtoV1;
 import com.example.portfolio.api.v1.project.ProjectDtoV1;
 import com.example.portfolio.api.v1.skill.SkillDtoV1;
 import com.example.portfolio.api.v1.user.dto.UserDtoV1;
-import com.example.portfolio.domain.basicprofile.BasicProfile;
-import com.example.portfolio.domain.career.Career;
-import com.example.portfolio.domain.education.Education;
-import com.example.portfolio.domain.license.License;
-import com.example.portfolio.domain.project.Project;
-import com.example.portfolio.domain.skill.Skill;
-import com.example.portfolio.domain.user.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Getter

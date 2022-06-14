@@ -10,7 +10,7 @@ public class CommonResponse {
   @Getter
   @Setter
   @AllArgsConstructor
-  public static class ResultDto<T> {
+  public static class ResponseDto<T> {
     private boolean success;
     private T data;
     private ErrorDto error;
@@ -29,11 +29,11 @@ public class CommonResponse {
     }
   }
 
-  public static <T> ResultDto<T> success(T data){
-    return new ResultDto<>(true, data, null);
+  public static <T> ResponseDto<T> success(T data){
+    return new ResponseDto<>(true, data, null);
   }
 
-  public static ResultDto<?> error(String message, int status){
-    return new ResultDto<>(false, null, new ErrorDto(message, status));
+  public static ResponseDto<?> error(String message, int status){
+    return new ResponseDto<>(false, null, new ErrorDto(message, status));
   }
 }

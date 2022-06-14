@@ -14,7 +14,7 @@ class CommonResponseTest {
   @Test
   void success() {
     TestObject object = new TestObject();
-    CommonResponse.ResultDto<TestObject> result = CommonResponse.success(object);
+    CommonResponse.ResponseDto<TestObject> result = CommonResponse.success(object);
 
     assertTrue(result.isSuccess());
     assertNotNull(result.getData());
@@ -27,7 +27,7 @@ class CommonResponseTest {
   void error() {
     String message = "test message";
     int status = 56;
-    CommonResponse.ResultDto<?> result = CommonResponse.error(message, status);
+    CommonResponse.ResponseDto<?> result = CommonResponse.error(message, status);
 
     assertFalse(result.isSuccess());
     assertNull(result.getData());

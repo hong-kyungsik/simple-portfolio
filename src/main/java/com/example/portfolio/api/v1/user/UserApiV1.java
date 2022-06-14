@@ -20,7 +20,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import static com.example.portfolio.api.CommonResponse.ResultDto;
+import static com.example.portfolio.api.CommonResponse.ResponseDto;
 import static com.example.portfolio.api.CommonResponse.success;
 
 @RestController
@@ -34,7 +34,7 @@ public class UserApiV1 {
   private final UserService userService;
 
   @PostMapping("/join")
-  public ResultDto<UserJoinResponseDtoV1> join(
+  public ResponseDto<UserJoinResponseDtoV1> join(
       @RequestBody @Valid UserJoinRequestDtoV1 dto
   ){
     User joinedUser = userService
@@ -44,7 +44,7 @@ public class UserApiV1 {
   }
 
   @PostMapping("/login")
-  public ResultDto<UserLoginResponseDtoV1> login(
+  public ResponseDto<UserLoginResponseDtoV1> login(
       @RequestBody @Valid UserLoginRequestDtoV1 dto,
       HttpServletResponse response
   ){

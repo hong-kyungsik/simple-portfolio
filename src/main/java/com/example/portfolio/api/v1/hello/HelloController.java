@@ -1,6 +1,6 @@
 package com.example.portfolio.api.v1.hello;
 
-import com.example.portfolio.api.CommonResponse.ResultDto;
+import com.example.portfolio.api.CommonResponse.ResponseDto;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import static com.example.portfolio.api.CommonResponse.success;
 @RequestMapping("/api/v1/hello")
 public class HelloController {
     @GetMapping
-    public ResultDto<String> hello(
+    public ResponseDto<String> hello(
         @AuthenticationPrincipal Long userId
     ){
         return success("hello user"+userId.toString());

@@ -22,6 +22,8 @@ public class Portfolio {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  private boolean isPublic;
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name="user.id")
   private User user;
