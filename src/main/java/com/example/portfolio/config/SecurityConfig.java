@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
+import org.springframework.security.access.vote.AffirmativeBased;
+import org.springframework.security.access.vote.ConsensusBased;
 import org.springframework.security.access.vote.UnanimousBased;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.access.expression.WebExpressionVoter;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.web.filter.CorsFilter;
 
@@ -29,10 +32,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AccessDecisionManager accessDecisionManager(){
+        WebExpressionVoter webExpressionVoter = new WebExpressionVoter();
         List<AccessDecisionVoter<?>> decisionVoters = List.of(
-            portfolioVoter
+            portfolioVoter,
+            webExpressionVoter
         );
-        return new UnanimousBased(decisionVoters);
+        return new AffirmativeBased(decisionVoters);
     }
 
     protected void configure(HttpSecurity http) throws Exception{
@@ -50,12 +55,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-            .antMatchers("/", "/**/auth/**", "/h2-console/**").permitAll()
-            .antMatchers("/**/hello").authenticated()
-            .antMatchers( "/**/portfolios").authenticated()
-            .accessDecisionManager(accessDecisionManager())
-
-            .anyRequest().authenticated();
+            .antMatchers("/", "/api/**/auth/**", "/h2-console/**").permitAll()
+            .anyRequest().authenticated()
+            .accessDecisionManager(accessDecisionManager());
 
         http.headers()
             .addHeaderWriter(new XFrameOptionsHeaderWriter(

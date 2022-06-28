@@ -37,7 +37,7 @@ public class PortfolioVoter implements AccessDecisionVoter<FilterInvocation> {
         final String method = invocation.getHttpRequest().getMethod();
         final Matcher matcher = PATTERN.matcher(invocation.getRequestUrl());
 
-        if(!checkAdequateSubject(matcher)){return ACCESS_GRANTED;}
+        if(!checkAdequateSubject(matcher)){return ACCESS_ABSTAIN;}
 
         try{
             Portfolio portfolio = findPortfolio(matcher);
