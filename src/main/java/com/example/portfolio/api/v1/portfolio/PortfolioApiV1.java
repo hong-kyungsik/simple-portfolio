@@ -17,13 +17,13 @@ import static com.example.portfolio.api.CommonResponse.success;
 @RequiredArgsConstructor
 @Slf4j
 public class PortfolioApiV1 {
-    private final PortfolioService service;
+    private final PortfolioService portfolioService;
 
     @GetMapping("/{id}")
     public ResponseDto<PortfolioDtoV1> findPortfolio(
         @PathVariable Long id
     ){
-        Portfolio portfolio = service.getPortfolio(id);
+        Portfolio portfolio = portfolioService.getPortfolio(id);
 
         PortfolioDtoV1 response =
             PortfolioDtoV1.fromPortfolio(portfolio);
@@ -35,7 +35,7 @@ public class PortfolioApiV1 {
     public ResponseDto<AddNewPortfolioResponseDtoV1> addNewPortfolio(
         @AuthenticationPrincipal Long userId
     ){
-        Portfolio portfolio = service.createNewEmptyPortfolio(userId);
+        Portfolio portfolio = portfolioService.createNewEmptyPortfolio(userId);
 
         AddNewPortfolioResponseDtoV1 response =
             AddNewPortfolioResponseDtoV1.fromPortfolio(portfolio);
