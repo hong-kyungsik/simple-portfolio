@@ -6,6 +6,8 @@ import com.example.portfolio.security.TokenProvider;
 import com.example.portfolio.service.user.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.core.IsNull;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,7 +21,9 @@ import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -53,6 +57,7 @@ class UserApiV1Test {
   private String password = "password";
 
   @Test
+  @DisplayName("회원가입이 성공한다.")
   @WithAnonymousUser
   void joinTest() throws Exception {
     UserJoinRequestDtoV1 bodyDto = new UserJoinRequestDtoV1();
@@ -79,6 +84,32 @@ class UserApiV1Test {
         .andExpect(jsonPath("data.name").value(name))
         .andExpect(jsonPath("data.email").value(email))
         .andExpect(jsonPath("error").value(IsNull.nullValue()));
+  }
 
+  @Test
+  @DisplayName("유효하지 않은 이메일로 회원가입이 실패한다.")
+  @WithAnonymousUser
+  void joinFailWithMalformedEmailTest() throws Exception {
+    String malformedEmail = "malformed";
+
+    UserJoinRequestDtoV1 bodyDto = new UserJoinRequestDtoV1();
+    bodyDto.setEmail(malformedEmail);
+    bodyDto.setName(name);
+    bodyDto.setPassword(password);
+
+    User user = User.builder(name, email, password).id(1L).build();
+
+    when(userService.join(name, email, password))
+        .thenReturn(user);
+
+    ResultActions action = mockMvc.perform(
+        post(baseUrl+"/auth/join")
+            .content(objectMapper.writeValueAsString(bodyDto))
+            .accept(MediaType.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
+            .with(SecurityMockMvcRequestPostProcessors.csrf()));
+
+    action
+        .andExpect(status().isBadRequest());
   }
 }
