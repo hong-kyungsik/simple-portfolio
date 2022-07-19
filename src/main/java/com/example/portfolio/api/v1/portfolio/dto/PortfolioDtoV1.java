@@ -1,6 +1,6 @@
 package com.example.portfolio.api.v1.portfolio.dto;
 
-import com.example.portfolio.api.v1.basicprofile.BasicProfileDtoV1;
+import com.example.portfolio.api.v1.basicprofile.dto.BasicProfileDtoV1;
 import com.example.portfolio.api.v1.career.CareerDtoV1;
 import com.example.portfolio.api.v1.education.EducationDtoV1;
 import com.example.portfolio.api.v1.license.LicenseDtoV1;

@@ -1,4 +1,4 @@
-package com.example.portfolio.api.v1.basicprofile;
+package com.example.portfolio.api.v1.basicprofile.dto;
 
 import lombok.Getter;
 import lombok.Setter;
