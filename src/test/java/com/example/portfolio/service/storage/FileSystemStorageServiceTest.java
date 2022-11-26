@@ -32,8 +32,8 @@ class FileSystemStorageServiceTest {
     @Test
     void store() {
         MockMultipartFile file = createMockFileForTest();
-        service.store(file);
-        assertThat(service.load(file.getOriginalFilename())).exists();
+        String storedFileName = service.store(file);
+        assertThat(service.load(storedFileName)).exists();
     }
 
 }

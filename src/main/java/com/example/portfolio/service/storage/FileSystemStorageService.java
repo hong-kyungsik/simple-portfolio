@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.UUID;
 
 @Service
 public class FileSystemStorageService implements StorageService{
@@ -24,13 +25,14 @@ public class FileSystemStorageService implements StorageService{
     }
 
     @Override
-    public void store(MultipartFile file) {
+    public String store(MultipartFile file) {
         try{
             if(file.isEmpty()){
                 throw new StorageException("file is empty");
             }
+            String fileNameForStore = createFileNameForStore(file);
             Path destinationFile = this.rootLocation.resolve(
-                Paths.get(file.getOriginalFilename())
+                Paths.get(fileNameForStore)
             ).normalize().toAbsolutePath();
             if(!isValidRootPath(destinationFile)){
                 throw new StorageException("Invalid path.");
@@ -38,9 +40,16 @@ public class FileSystemStorageService implements StorageService{
             try(InputStream inputStream = file.getInputStream()){
                 Files.copy(inputStream, destinationFile, StandardCopyOption.REPLACE_EXISTING);
             }
+            return fileNameForStore;
         }catch(IOException ioException){
             throw new StorageException("Falied to store file.", ioException);
         }
+    }
+
+    private String createFileNameForStore(MultipartFile file){
+        String fileName = file.getOriginalFilename();
+        String extension = fileName.substring(fileName.lastIndexOf("."));
+        return UUID.randomUUID()+extension;
     }
 
     private boolean isValidRootPath(Path destinationFilePath){

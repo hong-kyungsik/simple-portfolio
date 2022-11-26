@@ -52,7 +52,7 @@ public class UserApiV1 {
     String token = tokenProvider.create(loginUser);
 
     response.setHeader("X-AUTH-TOKEN", token);
-    Cookie cookie = new Cookie("X-AUTH_TOKEN", token);
+    Cookie cookie = new Cookie("X-AUTH-TOKEN", token);
     cookie.setPath("/");
     cookie.setHttpOnly(true);
     cookie.setSecure(true);

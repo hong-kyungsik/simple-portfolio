@@ -22,7 +22,6 @@ class SnsRepositoryTest {
 
   private Sns getSnsForTest(){
     return Sns.builder(serviceName, url)
-        .iconImageUrl(iconImageUrl)
         .build();
   }
 
@@ -43,7 +42,6 @@ class SnsRepositoryTest {
     Sns foundSns = repository.findById(sns.getId()).orElseThrow(RuntimeException::new);
     assertEquals(serviceName, foundSns.getServiceName());
     assertEquals(url, foundSns.getUrl());
-    assertEquals(iconImageUrl, foundSns.getIconImageUrl());
   }
 
   @Test

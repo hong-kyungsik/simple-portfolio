@@ -23,7 +23,7 @@ public class PortfolioApiV1 {
     public ResponseDto<PortfolioDtoV1> findPortfolio(
         @PathVariable Long id
     ){
-        Portfolio portfolio = portfolioService.getPortfolio(id);
+        Portfolio portfolio = portfolioService.getPortfolioWithSubData(id);
 
         PortfolioDtoV1 response =
             PortfolioDtoV1.fromPortfolio(portfolio);

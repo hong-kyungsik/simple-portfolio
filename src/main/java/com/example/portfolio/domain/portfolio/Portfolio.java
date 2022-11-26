@@ -28,6 +28,7 @@ public class Portfolio {
   @JoinColumn(name="user.id")
   private User user;
 
+  @Setter
   @OneToOne(fetch = FetchType.LAZY, mappedBy = "portfolio")
   private BasicProfile basicProfile;
 
@@ -45,6 +46,5 @@ public class Portfolio {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "portfolio")
   private List<Skill> skills;
-
 
 }

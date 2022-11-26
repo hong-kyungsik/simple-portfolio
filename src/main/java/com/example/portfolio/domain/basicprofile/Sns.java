@@ -19,8 +19,6 @@ public class Sns {
 
   private String url;
 
-  private String iconImageUrl;
-
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "basicProfile.id")
   private BasicProfile basicProfile;

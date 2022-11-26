@@ -1,5 +1,6 @@
 package com.example.portfolio.domain.image;
 
+import com.example.portfolio.domain.user.User;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,15 +11,14 @@ class ImageTest {
     void createTest(){
         String fileName = "fileName";
         String originalFileName = "originalFileName";
-        String extension = ".extension";
+        User user = User.hiddenBuilder().build();
 
         Image image = Image
-            .builder(fileName, originalFileName, extension)
+            .builder(fileName, originalFileName, user)
             .build();
 
         assertEquals(fileName, image.getFileName());
         assertEquals(originalFileName, image.getOriginalFileName());
-        assertEquals(extension, image.getExtension());
 
     }
 }

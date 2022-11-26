@@ -1,5 +1,7 @@
 package com.example.portfolio.domain.image;
 
+import com.example.portfolio.domain.user.User;
+import com.example.portfolio.domain.user.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,13 +17,26 @@ class ImageRepositoryTest {
     @Autowired
     private ImageRepository repository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private String fileName = "fileName";
     private String originalFileName = "originalFileName";
     private String extension = ".extension";
 
+    private String name = "name";
+    private String email = "email";
+    private String password = "password";
+
+    private User getUserForTest(){
+        return User.builder(name, email, password)
+          .build();
+    }
+
     private Image getImageForTest(){
+        User user = userRepository.save(getUserForTest());
         return Image
-            .builder(fileName, originalFileName, extension)
+            .builder(fileName, originalFileName, user)
             .build();
     }
 
@@ -46,7 +61,6 @@ class ImageRepositoryTest {
             .orElseThrow(RuntimeException::new);
         assertEquals(image.getFileName(), foundImage.getFileName());
         assertEquals(image.getOriginalFileName(), foundImage.getOriginalFileName());
-        assertEquals(image.getExtension(), foundImage.getExtension());
     }
 
     @Test

@@ -22,6 +22,13 @@ public class PortfolioService {
                 new NotFoundException("portfolio not exists."));
     }
 
+    @Transactional(readOnly = true)
+    public Portfolio getPortfolioWithSubData(Long id){
+        return repository.findById(id)
+          .orElseThrow(()->
+            new NotFoundException("portfolio not exists."));
+    }
+
     @Transactional
     public Portfolio createNewEmptyPortfolio(Long userId){
         User user = userRepository.findById(userId)

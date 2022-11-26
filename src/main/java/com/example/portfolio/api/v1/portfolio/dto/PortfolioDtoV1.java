@@ -1,6 +1,6 @@
 package com.example.portfolio.api.v1.portfolio.dto;
 
-import com.example.portfolio.api.v1.basicprofile.dto.BasicProfileDtoV1;
+import com.example.portfolio.api.v1.basicProfile.dto.BasicProfileDtoV1;
 import com.example.portfolio.api.v1.career.CareerDtoV1;
 import com.example.portfolio.api.v1.education.EducationDtoV1;
 import com.example.portfolio.api.v1.license.LicenseDtoV1;
@@ -30,6 +30,8 @@ public class PortfolioDtoV1 {
         PortfolioDtoV1 dto = new PortfolioDtoV1();
         dto.id = portfolio.getId();
         dto.isPublic = portfolio.isPublic();
+        dto.basicProfile = BasicProfileDtoV1
+          .fromBasicProfile(portfolio.getBasicProfile());
         return dto;
     }
 }

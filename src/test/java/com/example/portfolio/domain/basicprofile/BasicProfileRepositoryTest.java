@@ -28,7 +28,6 @@ class BasicProfileRepositoryTest {
     String selfDescription = "selfDescription";
 
     BasicProfile profile = BasicProfile.builder(name, phone, email)
-        .profileImageUrl(profileImageUrl)
         .selfDescription(selfDescription)
         .build();
 
@@ -47,7 +46,6 @@ class BasicProfileRepositoryTest {
     String selfDescription = "selfDescription";
 
     BasicProfile profile = BasicProfile.builder(name, phone, email)
-        .profileImageUrl(profileImageUrl)
         .selfDescription(selfDescription)
         .build();
 
@@ -58,7 +56,6 @@ class BasicProfileRepositoryTest {
     assertEquals(name, foundProfile.getName());
     assertEquals(phone, foundProfile.getPhone());
     assertEquals(email, foundProfile.getEmail());
-    assertEquals(profileImageUrl, foundProfile.getProfileImageUrl());
     assertEquals(selfDescription, foundProfile.getSelfDescription());
   }
 
@@ -72,7 +69,6 @@ class BasicProfileRepositoryTest {
     String selfDescription = "selfDescription";
 
     BasicProfile profile = BasicProfile.builder(name, phone, email)
-        .profileImageUrl(profileImageUrl)
         .selfDescription(selfDescription)
         .build();
 

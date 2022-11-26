@@ -42,4 +42,9 @@ public class UserService{
         return user;
     }
 
+    @Transactional(readOnly = true)
+    public User getUserByUserId(Long userId){
+        return userRepository.findById(userId)
+          .orElseThrow(()->new NotFoundException("존재하지 않는 사용자입니다."));
+    }
 }

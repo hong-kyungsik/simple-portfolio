@@ -1,5 +1,6 @@
 package com.example.portfolio.domain.basicprofile;
 
+import com.example.portfolio.domain.image.Image;
 import com.example.portfolio.domain.portfolio.Portfolio;
 import lombok.*;
 
@@ -25,7 +26,9 @@ public class BasicProfile {
 
   private String email;
 
-  private String profileImageUrl;
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "image.id")
+  private Image profileImage;
 
   @OneToMany(mappedBy = "basicProfile", cascade = CascadeType.ALL)
   private final List<Sns> snss = new ArrayList<>();
@@ -41,5 +44,14 @@ public class BasicProfile {
   public void addSns(Sns sns){
     snss.add(sns);
     sns.setBasicProfile(this);
+  }
+
+  public void setProfileImage(Image image){
+    profileImage = image;
+  }
+
+  public void isAddedTo(Portfolio portfolio) {
+    this.portfolio = portfolio;
+    portfolio.setBasicProfile(this);
   }
 }

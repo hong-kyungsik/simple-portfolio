@@ -15,13 +15,11 @@ class BasicProfileTest {
 
     BasicProfile profile = BasicProfile.builder(name, phone, email)
         .selfDescription(selfDescription)
-        .profileImageUrl(profileImageUrl)
         .build();
 
     assertEquals(name, profile.getName());
     assertEquals(selfDescription, profile.getSelfDescription());
     assertEquals(phone, profile.getPhone());
     assertEquals(email, profile.getEmail());
-    assertEquals(profileImageUrl, profile.getProfileImageUrl());
   }
 }

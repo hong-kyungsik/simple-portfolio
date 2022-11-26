@@ -11,26 +11,26 @@ import javax.persistence.*;
 @Getter
 @Builder(builderMethodName = "hiddenBuilder")
 public class Image {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String fileName;
+  private String fileName;
 
-    private String originalFileName;
+  private String originalFileName;
 
-    private String extension;
+  private boolean isPublic;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user.id")
-    private User user;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user.id")
+  private User user;
 
-    public static ImageBuilder builder(
-        String fileName, String originalFileName, String extension
-    ){
-        return hiddenBuilder()
-            .fileName(fileName)
-            .originalFileName(originalFileName)
-            .extension(extension);
-    }
+  public static ImageBuilder builder(
+    String fileName, String originalFileName, User user
+  ){
+    return hiddenBuilder()
+      .fileName(fileName)
+      .originalFileName(originalFileName)
+      .user(user);
+  }
 }
